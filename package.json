@@ -3,10 +3,12 @@
   "version": "2.0.0",
   "description": "Easily manage CRUD resources in React using built-in antd components.",
   "main": "lib/index.js",
-  "files": ["lib/"],
+  "files": [
+    "lib/"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublish": "babel src -d lib"
+    "prepublish": "webpack"
   },
   "repository": {
     "type": "git",
@@ -34,8 +36,9 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.2",
     "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-preset-env": "^1.6.0",
-    "babel-preset-react": "^6.24.1"
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^1.6.0"
   }
 }
