@@ -1,10 +1,12 @@
 {
   "name": "antd-crud-resource",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Easily manage CRUD resources in React using built-in antd components.",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "files": ["lib/"],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "babel src -d lib"
   },
   "repository": {
     "type": "git",
@@ -29,5 +31,11 @@
     "antd": ">= 2.10.0",
     "prop-types": "^15.5.10",
     "react": ">= 15.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1"
   }
 }
