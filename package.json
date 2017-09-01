@@ -1,0 +1,33 @@
+{
+  "name": "antd-crud-resource",
+  "version": "1.0.0",
+  "description": "Easily manage CRUD resources in React using built-in antd components.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ripeworks/antd-crud-resource.git"
+  },
+  "keywords": [
+    "ant",
+    "antd",
+    "ant-design",
+    "crud",
+    "react",
+    "resource",
+    "model"
+  ],
+  "author": "Ripeworks",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ripeworks/antd-crud-resource/issues"
+  },
+  "homepage": "https://github.com/ripeworks/antd-crud-resource#readme",
+  "peerDependencies": {
+    "antd": ">= 2.10.0",
+    "prop-types": "^15.5.10",
+    "react": ">= 15.0.0"
+  }
+}
