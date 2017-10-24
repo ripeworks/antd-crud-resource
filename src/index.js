@@ -10,7 +10,13 @@ export default class extends Component {
     form: PropTypes.func.isRequired,
     onSave: PropTypes.func.isRequired,
     onRemove: PropTypes.func,
-    rowActions: PropTypes.func
+    rowActions: PropTypes.func,
+    loading: PropTypes.bool
+  }
+
+  static defaultProps = {
+    data: [],
+    loading: false
   }
 
   state = {
@@ -59,7 +65,7 @@ export default class extends Component {
   }
 
   render () {
-    const {name, fields, onRemove, rowActions} = this.props
+    const {name, fields, onRemove, rowActions, loading} = this.props
     const data = this.state.filtered || this.props.data || []
     const Form = this.props.form
 
@@ -69,6 +75,7 @@ export default class extends Component {
       </div>
       <Table
         dataSource={data}
+        loading={loading}
         rowKey='id'
         columns={[
           ...fields,

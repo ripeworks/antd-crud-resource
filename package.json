@@ -1,6 +1,6 @@
 {
   "name": "antd-crud-resource",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "Easily manage CRUD resources in React using built-in antd components.",
   "main": "lib/index.js",
   "files": [
