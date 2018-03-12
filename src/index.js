@@ -2,6 +2,15 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Table, Popconfirm, Button, Input } from 'antd'
 
+const filterResults = (filter, {data, fields}) => {
+  const reg = new RegExp(filter, 'gi')
+  return data.filter(row => {
+    const fieldValues = fields.map(field => field.dataIndex)
+    const matches = fieldValues.filter(field => !!String(row[field]).match(reg))
+    return matches.length > 0
+  })
+}
+
 export default class extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
@@ -54,14 +63,17 @@ export default class extends Component {
   }
 
   onSearch = (e) => {
-    const reg = new RegExp(e.target.value, 'gi')
-    const filtered = this.props.data.filter(row => {
-      const fields = this.props.fields.map(field => field.dataIndex)
-      const matches = fields.filter(field => !!String(row[field]).match(reg))
-      return matches.length > 0
-    })
-
+    const filtered = filterResults(e.target.value, this.props)
     this.setState({search: e.target.value, filtered})
+  }
+
+  componentWillReceiveProps (nextProps) {
+    const {search} = this.state
+
+    if (search && this.props.data !== nextProps.data) {
+      const filtered = filterResults(search, nextProps)
+      this.setState({filtered})
+    }
   }
 
   render () {
