@@ -17,9 +17,10 @@ export default class extends Component {
     data: PropTypes.array,
     fields: PropTypes.array.isRequired,
     form: PropTypes.func.isRequired,
-    onSave: PropTypes.func.isRequired,
+    onSave: PropTypes.func,
     onRemove: PropTypes.func,
     rowActions: PropTypes.func,
+    tableProps: PropTypes.object,
     loading: PropTypes.bool
   }
 
@@ -77,7 +78,7 @@ export default class extends Component {
   }
 
   render () {
-    const {name, fields, onRemove, rowActions, loading} = this.props
+    const {name, fields, onRemove, onSave, rowActions, loading, tableProps} = this.props
     const data = this.state.filtered || this.props.data || []
     const Form = this.props.form
 
@@ -96,8 +97,8 @@ export default class extends Component {
             key: 'action',
             render: (_, record) => <span>
               {rowActions && rowActions(record)}
-              <a role='button' onClick={() => this.onEdit(record)}>Edit</a>
-              <span className='ant-divider' />
+              {onSave && <a role='button' onClick={() => this.onEdit(record)}>Edit</a>}
+              {onRemove && <span className='ant-divider' />}
               {onRemove &&
                 <Popconfirm title='Are you sure?' onConfirm={() => onRemove(record)}>
                   <a role='button'>Delete</a>
@@ -110,6 +111,7 @@ export default class extends Component {
           <Button size='large' type='primary'
             onClick={this.onNew}>Add New {name}</Button>
         }
+        {...tableProps}
       />
       <Form
         visible={this.state.showModal}
