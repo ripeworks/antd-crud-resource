@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Table, Popconfirm, Button, Input } from 'antd'
+import { Table, Popconfirm, Button, Input, message } from 'antd'
 
 const filterResults = (filter, {data, fields}) => {
   const reg = new RegExp(filter, 'gi')
@@ -47,6 +47,9 @@ export default class extends Component {
         .then(res => {
           this.form.resetFields()
           this.setState({editModel: null, showModal: false})
+        })
+        .catch(err => {
+          message.error(err.message || 'Failed to save')
         })
     })
   }
