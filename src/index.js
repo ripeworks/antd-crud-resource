@@ -21,12 +21,14 @@ export default class extends Component {
     onRemove: PropTypes.func,
     rowActions: PropTypes.func,
     tableProps: PropTypes.object,
-    loading: PropTypes.bool
+    loading: PropTypes.bool,
+    buttonPlacement: PropTypes.oneOf(['footer', 'title']),
   }
 
   static defaultProps = {
     data: [],
-    loading: false
+    loading: false,
+    buttonPlacement: 'footer'
   }
 
   state = {
@@ -81,9 +83,14 @@ export default class extends Component {
   }
 
   render () {
-    const {name, fields, onRemove, onSave, rowActions, loading, tableProps} = this.props
+    const {name, fields, onRemove, onSave, rowActions, loading,
+      tableProps, buttonPlacement} = this.props
     const data = this.state.filtered || this.props.data || []
     const Form = this.props.form
+    const newButton = {
+      [buttonPlacement]: () =>
+        <Button size='large' type='primary' onClick={this.onNew}>Add New {name}</Button>
+    }
 
     return <div>
       <div className='search'>
@@ -110,10 +117,7 @@ export default class extends Component {
             </span>
           }
         ]}
-        footer={() =>
-          <Button size='large' type='primary'
-            onClick={this.onNew}>Add New {name}</Button>
-        }
+        {...newButton}
         {...tableProps}
       />
       <Form
